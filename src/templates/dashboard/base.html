@@ -1,0 +1,240 @@
+{% load staticfiles i18n compress %}
+<!DOCTYPE html>
+<html lang="es" class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title>4xCarro</title>
+    <meta http-equiv="Refresh" content="30">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="description" content="Administración Hackaton - Hackaton">
+    <meta name="author" content="Jhon Vergara">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    {% block css %}
+    <!-- Your stuff: Third-party css libraries go here -->
+    <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700|Raleway:400,100,200,300,500,600,700,800,900/" />
+
+    {% compress css %}
+    <!-- This file store project specific CSS -->
+    <link type="text/css" rel="stylesheet" href="{% static 'fonts/clip-font.min.css' %}" />
+
+    <link type="text/css" rel="stylesheet" href="{% static 'bower_components/bootstrap/dist/css/bootstrap.min.css' %}" />
+    <link type="text/css" rel="stylesheet" href="{% static 'bower_components/font-awesome/css/font-awesome.min.css' %}" />
+    <link type="text/css" rel="stylesheet" href="{% static 'bower_components/perfect-scrollbar/css/perfect-scrollbar.min.css' %}" />
+    <link type="text/css" rel="stylesheet" href="{% static 'bower_components/sweetalert/dist/sweetalert.css' %}" />
+
+    <link type="text/css" rel="stylesheet" href="{% static 'css/main.min.css' %}" />
+    <link type="text/css" rel="stylesheet" href="{% static 'css/main-responsive.min.css' %}" />
+    <link type="text/css" rel="stylesheet" media="print" href="{% static 'css/print.min.css' %}" />
+    <link type="text/css" rel="stylesheet" id="skin_color" href="{% static 'css/theme/light.min.css' %}" />
+    <link type="text/css" rel="stylesheet" href="{% static 'css/general.css' %}" />
+
+    <link type="text/css" rel="stylesheet" href="{% static 'bower_components/bootstrap-modal/css/bootstrap-modal-bs3patch.css' %}" />
+    <link type="text/css" rel="stylesheet" href="{% static 'bower_components/bootstrap-modal/css/bootstrap-modal.css' %}" />
+    <link type="text/css" rel="stylesheet" href="{% static 'bower_components/select2/dist/css/select2.min.css' %}" />
+    <link type="text/css" rel="stylesheet" href="{% static 'bower_components/datatables/media/css/dataTables.bootstrap.min.css' %}" />
+    <link type="text/css" rel="stylesheet" href="{% static 'bower_components/fullcalendar/dist/fullcalendar.min.css' %}" />
+    <script type="text/javascript" src="{% static 'bower_components/jquery/dist/jquery.min.js' %}"></script>
+    {% endcompress %}
+    {% endblock %}
+
+  </head>
+
+  <body>
+
+    <!-- start: HEADER -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <!-- start: TOP NAVIGATION CONTAINER -->
+        <div class="container">
+            <div class="navbar-header" style="margin-top: 3px;">
+                <!-- start: RESPONSIVE MENU TOGGLER -->
+                <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+                <span class="clip-list-2"></span>
+            </button>
+                <!-- end: RESPONSIVE MENU TOGGLER -->
+                <!-- start: LOGO -->
+             <a href="">
+                <img id="imagen_logo" src="{% static 'images/logo.png' %}" style="max-width: 40px;" />
+             </a>
+                <!-- end: LOGO -->
+            </div>
+            <div class="navbar-tools">
+                <!-- start: TOP NAVIGATION MENU -->
+                <ul class="nav navbar-right">
+                    <!-- start: USER DROPDOWN -->
+                    <li class=" current-user">
+                        <a href="{% url 'account_logout' %}">
+                            <img src="{% static 'images/logo.png' %}" class="circle-img" alt="" width="20px">
+                            <span class="username">Salir</span>
+                        </a>
+                    </li>
+                        <!-- end: USER DROPDOWN -->
+                </ul>
+                <!-- end: TOP NAVIGATION MENU -->
+            </div>
+
+            <h2 style="font-size: 18px;color: #C7C7C7;font-weight: bold;float: left;display: block;height: auto;margin-top: -30px;font-family: fantasy;text-align: center;width: 100%;">
+              CuatroxCarro.com
+            </h2>
+
+        </div>
+        <!-- end: TOP NAVIGATION CONTAINER -->
+    </div>
+    <!-- end: HEADER -->
+    <!-- start: MAIN CONTAINER -->
+    <div class="main-container" >
+
+        <!-- start: PAGE -->
+        <div class="main-content" style="margin-left: 0px;">
+
+            <!-- end: SPANEL CONFIGURATION MODAL FORM -->
+            <div class="container">
+                <!-- start: PAGE HEADER -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <!-- start: PAGE TITLE & BREADCRUMB -->
+                        <ol class="breadcrumb">
+                            <li>
+                                <i class="clip-file"></i>
+                                <a href="/dashboard/">
+                                    Resumen de Viajes
+                                </a>
+                            </li>
+                            {% if breadcrumb %}
+                            <li>
+                                <i class="clip-file"></i>
+                                <a href="">
+                                    {{ breadcrumb.name }}
+                                </a>
+                            </li>
+                            {% endif %}
+                            <li class="active">
+                                {{primary_title}}
+                            </li>
+                        </ol>
+                        <div class="page-header">
+                            <h1>
+                              {% block primary_title %}{% endblock primary_title %}
+                              <small>{% block secondary_title %}{% endblock secondary_title %}</small>
+                            </h1>
+                        </div><!-- end: PAGE TITLE & BREADCRUMB -->
+                    </div>
+                </div>
+                <!-- end: PAGE HEADER -->
+                {% if success_message %}
+                  <div class="alert alert-success">
+                      <button data-dismiss="alert" class="close">
+                          &times;
+                      </button>
+                      <i class="fa fa-check-circle"></i>
+                      <strong>Genial!</strong> {{success_message}}
+                  </div>
+                {% endif %}
+
+                {% if info_message %}
+                  <div class="alert alert-info">
+                      <button data-dismiss="alert" class="close">
+                          &times;
+                      </button>
+                      <i class="fa fa-info-circle"></i>
+                      <strong>Información!</strong> {{info_message}}
+                  </div>
+                {% endif %}
+
+                {% if warning_message %}
+                  <div class="alert alert-warning">
+                      <button data-dismiss="alert" class="close">
+                          &times;
+                      </button>
+                      <i class="fa fa-exclamation-triangle"></i>
+                      <strong>Cuidado!</strong> {{warning_message}}
+                  </div>
+                {% endif %}
+
+                {% if error_message %}
+                  <div class="alert alert-danger">
+                      <button data-dismiss="alert" class="close">
+                          &times;
+                      </button>
+                      <i class="fa fa-times-circle"></i>
+                      <strong>Ojo!</strong> {{error_message}}
+                  </div>
+                {% endif %}
+                <!-- start: PAGE CONTENT -->
+                {% block main %}{% endblock main %}
+
+                {% block inner %}{% endblock inner %}
+                <!-- end: PAGE CONTENT-->
+            </div>
+        </div>
+        <!-- end: PAGE -->
+    </div>
+    <!-- end: MAIN CONTAINER -->
+    <!-- start: FOOTER -->
+    <div class="footer clearfix">
+        <div class="footer-inner">
+            <script>
+                document.write(new Date().getFullYear())
+            </script> &copy; Todos los derechos reservados.
+        </div>
+        <div class="footer-items">
+            <span class="go-top"><i class="clip-chevron-up"></i></span>
+        </div>
+    </div>
+    <!-- end: FOOTER -->
+
+    <div id="ajax-modal" class="modal fade" tabindex="-1" style="display: none;"></div>
+
+    {% block javascript %}
+
+      <!--<![endif]-->
+      <script type="text/javascript" src="{% static 'bower_components/jquery-ui/jquery-ui.min.js' %}"></script>
+      <script type="text/javascript" src="{% static 'bower_components/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+      <script type="text/javascript" src="{% static 'bower_components/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js' %}"></script>
+      <script type="text/javascript" src="{% static 'bower_components/blockUI/jquery.blockUI.js' %}"></script>
+      <script type="text/javascript" src="{% static 'bower_components/perfect-scrollbar/js/min/perfect-scrollbar.jquery.min.js' %}"></script>
+      <script type="text/javascript" src="{% static 'bower_components/jquery.cookie/jquery.cookie.js' %}"></script>
+      <script type="text/javascript" src="{% static 'bower_components/sweetalert/dist/sweetalert.min.js' %}"></script>
+      <script type="text/javascript" src="{% static 'bower_components/jquery-validation/dist/jquery.validate.min.js' %}"></script>
+
+      <script src="{% static 'bower_components/bootbox.js/bootbox.js' %}"></script>
+      <script src="{% static 'bower_components/jquery-mockjax/dist/jquery.mockjax.min.js' %}"></script>
+      <script src="{% static 'bower_components/select2/dist/js/select2.min.js' %}"></script>
+      <script src="{% static 'bower_components/datatables/media/js/jquery.dataTables.min.js' %}"></script>
+      <script src="{% static 'bower_components/datatables/media/js/dataTables.bootstrap.js' %}"></script>
+      <script src="{% static 'js/min/table-data.min.js' %}"></script>
+
+      <script src="{% static 'bower_components/bootstrap-modal/js/bootstrap-modal.js' %}"></script>
+      <script src="{% static 'bower_components/bootstrap-modal/js/bootstrap-modalmanager.js' %}"></script>
+      <script src="{% static 'js/min/ui-modals.min.js' %}"></script>
+
+      <script src="{% static 'bower_components/moment/min/moment.min.js' %}"></script>
+      <script src="{% static 'bower_components/jqueryui-touch-punch/jquery.ui.touch-punch.min.js' %}"></script>
+    <script src="{% static 'plugin/jquery-ui.custom.min.js' %}"></script>
+
+      <script type="text/javascript" src="{% static 'js/min/main.min.js' %}"></script>
+      <script src="{% static 'js/min/login.min.js' %}"></script>
+
+
+      <script>
+          jQuery(document).ready(function() {
+              Main.init();
+              Login.init();
+              TableData.init();
+              UIModals.init();
+          });
+      </script>
+      {% compress js %}
+
+      {% endcompress %}
+
+    {% endblock javascript %}
+  </body>
+</html>
+

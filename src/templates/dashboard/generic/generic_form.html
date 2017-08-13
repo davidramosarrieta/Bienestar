@@ -1,0 +1,48 @@
+{% extends "dashboard/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %} {{primary_title}} {% endblock %}
+{% block primary_title %} {{primary_title}} {% endblock %}
+{% block secondary_title %} {{secondary_title}} {% endblock %}
+
+{% block main %}
+    <form class="form-horizontal" method="post"  enctype="multipart/form-data">
+
+        <div class="row">
+            <div class="col-sm-12">
+                <!-- start: TEXT FIELDS PANEL -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="fa fa-external-link-square"></i> {{primary_title}}
+                        <div class="panel-tools">
+                            <a class="btn btn-xs btn-link panel-collapse collapses" href="#">
+                            </a>
+                            <a class="btn btn-xs btn-link panel-config" href="#panel-config" data-toggle="modal">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <a class="btn btn-xs btn-link panel-refresh" href="#">
+                                <i class="fa fa-refresh"></i>
+                            </a>
+                            <a class="btn btn-xs btn-link panel-expand" href="#">
+                                <i class="fa fa-resize-full"></i>
+                            </a>
+                            <a class="btn btn-xs btn-link panel-close" href="#">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <form role="form" class="form-horizontal" enctype="multipart/form-data">
+                            <p>{{ form.fieldname.errors.as_text }}</p>
+
+                            {% csrf_token %}
+                            {% crispy form %}
+                        </form>
+                    </div>
+                </div>
+                <!-- end: TEXT FIELDS PANEL -->
+            </div>
+        </div>
+
+    </form>
+{% endblock %}

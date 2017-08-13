@@ -1,0 +1,25 @@
+version: '2'
+
+services:
+  django:
+    build:
+      context: .
+      dockerfile: ./compose/django/Dockerfile
+    container_name: app-django
+    user: django
+    command: /gunicorn.sh
+    env_file: .env
+    external_links:
+      - nginx-proxy
+    expose:
+      - "5006"
+    environment:
+      - "VIRTUAL_HOST=appdomain.com"
+      - "VIRTUAL_PORT=5006"
+
+
+networks:
+  default:
+    external:
+      name: commons_default
+

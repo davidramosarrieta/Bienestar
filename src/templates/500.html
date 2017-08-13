@@ -1,0 +1,103 @@
+{% load staticfiles i18n compress %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Hackaton</title>
+
+	<!-- FONTS -->
+	<link href='http://fonts.googleapis.com/css?family=Signika:400,300,600,700' rel='stylesheet' type='text/css'>
+
+  <link type="text/css" rel="stylesheet" href="/static/error/css/font-awesome-4.2.0/font-awesome-4.2.0/css/font-awesome.min.css" />
+  <link type="text/css" rel="stylesheet" href="/static/error/css/animation.css" />
+  <link type="text/css" rel="stylesheet" href="/static/error/css/main.css" />
+
+</head>
+<body>
+	<!-- ANIMATION -->
+	<div class="fix-wrp">
+		<div class="animate-wrp">
+			<div class="sky">
+				<div class="car-wheels"></div>
+				<div class="car">
+					<div class="msg"><b><span>Oops!</span>Parece que algo anda mal!</b></div>
+				</div>
+				<div class="car-wheels c1"></div>
+				<div class="car1 c1"></div>
+				<div class="cloud"></div>
+				<div class="cloud2"></div>
+				<div class="cloud1"></div>
+				<div class="grass1"></div>
+				<div class="grass"></div>
+				<div class="grass2"></div>
+				<div class="mountain"></div>
+				<div class="mountain1"></div>
+				<div class="tree"></div>
+				<div class="tree-front"></div>
+				<div class="road"></div>
+				<div class="road-front"></div>
+			</div>
+		</div>
+	</div>
+	<!--/animate-wrp -->
+
+	<!-- MAIN WRAPPER -->
+	<div class="main-wrapper">
+		<!-- CONTAINER -->
+		<div class="container">
+
+			<!-- BALLOON SHIP -->
+			<div class="balloon-ship">
+				<div class="message-wrp">
+					<strong class="t1">OOPS!</strong>
+					<strong class="t2">ERROR 500</strong>
+					<strong class="t3">ALGO INESPERADO PASÓ</strong>
+				</div>
+				<img src="/static/error/images/balloon-ship.png" alt="balloon-ship" />
+			</div>
+			<!--/balloon ship -->
+
+			<div class="message">
+				<p class="t1">Algo inesperado ha sucedido.<br> Tranquilo, hemos tomado nota y trabajaremos para que muy pronto no vuelva a pasar.</p>
+			</div>
+
+
+			<p class="copyrights">Copyright © 2016 Hackaton. Todos los derechos reservados.</p>
+		</div>
+		<!--/container -->
+	</div>
+	<!--/main-wrapper -->
+
+  <script src="/static/error/js/jquery-1.11.1.min.js"></script>
+  <script src="/static/error/js/jquery.arctext.js"></script>
+
+	<script>
+		function mainWindow(){
+			$(".main-wrapper").css({
+				width: $('html').width(),
+				height: $('html').height() > $(window).height() ? $('html').height() : $(window).height()
+			});
+		}
+		function animateWindow(){
+			$(".animate-wrp").css({
+				width: $(window).width(),
+				height: $('.main-wrapper').height()
+			});
+		}
+		$(document).ready(function() {
+			mainWindow();
+			animateWindow();
+		});
+		$(window).resize(function(event) {
+			mainWindow();
+			animateWindow();
+		});
+		$(document).ready(function() {
+			var $t3	= $('.message-wrp .t3').hide();
+			$t3.show().arctext({radius: 1900, dir: -1});
+		});
+	</script>
+</body>
+</html>
