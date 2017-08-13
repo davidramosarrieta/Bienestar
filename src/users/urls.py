@@ -33,9 +33,4 @@ urlpatterns = [
         view=views.UserUpdateView.as_view(),
         name='update'
     ),
-
-    url(regex=r'^confirm/(?P<id>.+?)$',
-        view=views.confirm_account,
-        name='confirm_account'
-    ),
 ]

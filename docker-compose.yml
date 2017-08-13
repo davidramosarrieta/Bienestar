@@ -14,7 +14,7 @@ services:
     expose:
       - "5006"
     environment:
-      - "VIRTUAL_HOST=appdomain.com"
+      - "VIRTUAL_HOST=104.131.184.43"
       - "VIRTUAL_PORT=5006"
 
 

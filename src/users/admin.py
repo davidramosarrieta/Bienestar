@@ -5,60 +5,12 @@ from django import forms
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as AuthUserAdmin
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
-from .models import User, UserApp, Group, City, Location, Plate, UserDevice, UserCurrentLocation, UserHistoricalLocation, \
-    UserRating, LocationFilter
-
-
-class LocationAdmin(admin.ModelAdmin):
-    list_display = ('name', 'address','userApp')
-
-admin.site.register(Location, LocationAdmin)
-
-class GroupAdmin(admin.ModelAdmin):
-    list_display = ('name', 'domain')
-
-admin.site.register(Group, GroupAdmin)
+from .models import User, City
 
 class CityAdmin(admin.ModelAdmin):
-    list_display = ('name','group')
+    list_display = ('name',)
 
 admin.site.register(City, CityAdmin)
-
-class UserAppAdmin(admin.ModelAdmin):
-    list_display = ('name','group','email','status')
-
-admin.site.register(UserApp, UserAppAdmin)
-
-class PlateAdmin(admin.ModelAdmin):
-    list_display = ('plate',)
-
-admin.site.register(Plate, PlateAdmin)
-
-
-class UserCurrentLocationAdmin(admin.ModelAdmin):
-    list_display = ('userApp','latitude','longitude')
-
-admin.site.register(UserCurrentLocation, UserCurrentLocationAdmin)
-
-class UserHistoricalLocationAdmin(admin.ModelAdmin):
-    list_display = ('userApp','latitude','longitude')
-
-admin.site.register(UserHistoricalLocation, UserHistoricalLocationAdmin)
-
-class UserDeviceAdmin(admin.ModelAdmin):
-    list_display = ('userApp','platform')
-
-admin.site.register(UserDevice, UserDeviceAdmin)
-
-class UserRatingAdmin(admin.ModelAdmin):
-    list_display = ('userApp','rol', 'score')
-
-admin.site.register(UserRating, UserRatingAdmin)
-
-class LocationFilterAdmin(admin.ModelAdmin):
-    list_display = ('userApp','active', 'address_begin','address_end')
-
-admin.site.register(LocationFilter, LocationFilterAdmin)
 
 class MyUserChangeForm(UserChangeForm):
     class Meta(UserChangeForm.Meta):

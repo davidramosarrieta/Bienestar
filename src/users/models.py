@@ -33,7 +33,7 @@ class City(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = 'Ciudade'
+        verbose_name = 'Ciudades'
 
 
 #@receiver(models.signals.pre_save, sender=UserApp)

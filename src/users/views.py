@@ -9,29 +9,7 @@ from django.views.generic import DetailView, ListView, RedirectView, UpdateView
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .models import User, UserApp
-
-
-def confirm_account(request, id, template_name = 'email/confirmed_account.html'):
-    user = UserApp.objects.filter(confirm_account_id=id)
-    message = "URL de confirmacción incorrecta. Por favor verifica."
-
-    if len(user) > 0:
-        message = "Genial, cuenta confirmada satisfactoriamente. Puedes ingresar desde tu teléfono."
-        user[0].status = UserApp.ENABLE
-
-        token = random.randint(10000,999999999)
-        user[0].confirm_account_id = "{0}.434-.{1}32432.-{2}".format(token,
-                                                                     user[0].email,
-                                                                     user[0].confirm_account_id
-                                                                     )
-        user[0].save()
-
-    data = {
-        "message": message
-    }
-
-    return render(request, template_name, data)
+from .models import User
 
 class UserDetailView(LoginRequiredMixin, DetailView):
     model = User

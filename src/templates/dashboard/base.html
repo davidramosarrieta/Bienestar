@@ -3,7 +3,7 @@
 <html lang="es" class="no-js">
   <head>
     <meta charset="utf-8">
-    <title>4xCarro</title>
+    <title>Hackaton</title>
     <meta http-equiv="Refresh" content="30">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -59,9 +59,6 @@
             </button>
                 <!-- end: RESPONSIVE MENU TOGGLER -->
                 <!-- start: LOGO -->
-             <a href="">
-                <img id="imagen_logo" src="{% static 'images/logo.png' %}" style="max-width: 40px;" />
-             </a>
                 <!-- end: LOGO -->
             </div>
             <div class="navbar-tools">
@@ -70,7 +67,6 @@
                     <!-- start: USER DROPDOWN -->
                     <li class=" current-user">
                         <a href="{% url 'account_logout' %}">
-                            <img src="{% static 'images/logo.png' %}" class="circle-img" alt="" width="20px">
                             <span class="username">Salir</span>
                         </a>
                     </li>

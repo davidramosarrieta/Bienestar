@@ -18,7 +18,14 @@ def update_site_forward(apps, schema_editor):
         id=settings.SITE_ID,
         defaults={
             'domain': 'appdomain.com',
-            'name': 'CuatroxCarro Web'
+            'name': 'Hackaton Web'
+        }
+    )
+    Site.objects.update_or_create(
+        id=settings.SITE_ID,
+        defaults={
+            'domain': '104.131.184.43',
+            'name': 'Hackaton UNAC'
         }
     )
 
