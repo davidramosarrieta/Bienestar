@@ -3,5 +3,12 @@
 {% load staticfiles i18n compress %}
 
 {% block main %}
-    {{ time }}
+
+    <form method="POST" enctype="multipart/form-data">
+     	{% csrf_token %} <!-- validar todos los formularios-->
+        {{form.as_p}}
+
+     <button type="submit"> aceptar </button>
+     </form>
+
 {% endblock %}
