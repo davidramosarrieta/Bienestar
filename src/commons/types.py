@@ -9,7 +9,7 @@ class RequestStatus():
     )
 
 class UserRol():
-    STUDENT = 'Cancelada'
+    STUDENT = 'Estudiante'
     OFFICER = 'Funcionario'
     TYPES = (
         (STUDENT, STUDENT),

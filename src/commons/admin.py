@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import, unicode_literals
-
-from django import forms
 from django.contrib import admin
 
-from src.commons.models import Category, Need, Shedule, StudentRequest
+from src.commons.models import Category, Need, Schedule, StudentRequest
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -17,16 +15,12 @@ class NeedAdmin(admin.ModelAdmin):
 
 admin.site.register(Need, NeedAdmin)
 
-class SheduleAdmin(admin.ModelAdmin):
+class ScheduleAdmin(admin.ModelAdmin):
     list_display = ('user','date','time',)
 
-admin.site.register(Shedule, SheduleAdmin)
+admin.site.register(Schedule, ScheduleAdmin)
 
 class StudentRequestAdmin(admin.ModelAdmin):
-    list_display = ('student','need','shedule','status',    )
+    list_display = ('student','need','schedule','status',    )
 
 admin.site.register(StudentRequest, StudentRequestAdmin)
-
-
-
-
