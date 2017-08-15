@@ -4,6 +4,7 @@
 
 {% block main %}
 
+<<<<<<< HEAD
     <div class="main-login col-sm-4 col-sm-offset-4">
         <!-- start: LOGIN BOX -->
         <div class="box-bienvenida">
@@ -67,5 +68,18 @@
         </div>
         <!-- end: COPYRIGHT -->
     </div>
+=======
+>>>>>>> develop
 
+        <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %} <!-- validar todos los formularios-->
+              <div class="col-lg-5 col-lg-offset-5" style="background-color: rebeccapurple;display: list-item; list-style: none;">
+                <div class=""  style="margin: 5px 0;padding: 5px; display: inline-block;">
+                    <label for="">categoria</label>
+                    {{ form.category }}
+                </div>
+                <div class="" style="margin: 5px 0"> {{ form.name }}</div>
+                <button type="submit"> aceptar </button>
+            </div>
+        </form>
 {% endblock %}
