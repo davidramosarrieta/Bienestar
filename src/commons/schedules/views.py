@@ -21,9 +21,14 @@ def schedules_officers(request, template_name='dashboard/officers/schedules.html
         form = ScheduleForm(data=request.POST or None)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(reverse('admin_cult_list'))
+        10/0
+        return HttpResponseRedirect(reverse('schedules_officers'))
     else:
-        form = ScheduleForm(date=None, start_time=None, end_time=None)
+        form = ScheduleForm(initial={
+            "date":None,
+            "start_time":None,
+            "end_time":None,
+        })
 
     data['form'] = form
     return render(request, template_name, data)

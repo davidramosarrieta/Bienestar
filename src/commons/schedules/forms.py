@@ -8,37 +8,35 @@ from src.commons.models import Schedule
 
 
 class ScheduleForm(forms.Form):
-    date = forms.DateField(label=_('Dia disponible'),
+    date = forms.DateField(label=_('Dia disponible'), required=True,
                                  widget=forms.TextInput(attrs={
                                      'class': 'datepicker gui-input',
-                                     'placeholder': 'Día disponible.'
+                                     'placeholder': 'Día disponible.','required':'',
                                  }))
-    start_time = forms.TimeField(label=_('Hora disponible'),
+    start_time = forms.TimeField(label=_('Hora disponible'), required=True,
                                  widget=forms.TimeInput(attrs={
                                      'class': 'timepicker form-control gui-input',
-                                     'placeholder': 'Desde.'
+                                     'placeholder': 'Desde.','required':''
                                  }))
 
-    end_time = forms.TimeField(label=_('Hora disponible'),
+    end_time = forms.TimeField(label=_('Hora disponible'), required=True,
                                  widget=forms.TimeInput(attrs={
                                      'class': 'timepicker form-control gui-input',
-                                     'placeholder': 'Hasta.'
+                                     'placeholder': 'Hasta.','required':''
                                  }))
 
-    def __init__(self, date, start_time, end_time, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
         super(ScheduleForm, self).__init__(*args, **kwargs)
-        self.date = date
-        self.start_time = start_time
-        self.end_time = end_time
 
     def save(self, schedule=None, data=None):
-        start = self.start_time
-        end = self.end_time
+        start = self.cleaned_data['start_date']
+        end = self.cleaned_data['end_date']
+        date = self.cleaned_data['date']
         if not schedule:
             while start <= end:
                 schedule = Schedule(
                     user=data.user,
-                    date=self.cleaned_data['date'],
+                    date=date,
                     time=start,
                 )
                 schedule.save()
