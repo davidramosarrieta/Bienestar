@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
-from src.commons.models import Shedule
+from src.commons.models import Schedule
 
 
 class ScheduleForm(forms.Form):
@@ -13,31 +13,38 @@ class ScheduleForm(forms.Form):
                                      'class': 'datepicker gui-input',
                                      'placeholder': 'Día disponible.'
                                  }))
-    time = forms.TimeField(label=_('Hora disponible'),
+    start_time = forms.TimeField(label=_('Hora disponible'),
                                  widget=forms.TimeInput(attrs={
                                      'class': 'timepicker form-control gui-input',
-                                     'placeholder': 'Hora disponible.'
+                                     'placeholder': 'Desde.'
                                  }))
 
-    def __init__(self,  *args, **kwargs):
-        super(ScheduleForm, self).__init__(*args, **kwargs)
+    end_time = forms.TimeField(label=_('Hora disponible'),
+                                 widget=forms.TimeInput(attrs={
+                                     'class': 'timepicker form-control gui-input',
+                                     'placeholder': 'Hasta.'
+                                 }))
 
-    def save(self, schedule=None):
+    def __init__(self, date, start_time, end_time, *args, **kwargs):
+        super(ScheduleForm, self).__init__(*args, **kwargs)
+        self.date = date
+        self.start_time = start_time
+        self.end_time = end_time
+
+    def save(self, schedule=None, data=None):
+        start = self.start_time
+        end = self.end_time
         if not schedule:
-            schedule = Shedule(
-                user=self.cleaned_data['user'],
-                date=self.cleaned_data['date'],
-                time=self.cleaned_data['time'],
-            )
-            schedule.save()
+            while start <= end:
+                schedule = Schedule(
+                    user=data.user,
+                    date=self.cleaned_data['date'],
+                    time=start,
+                )
+                schedule.save()
+                start = start + timedelta(hours=1)
         else:
-            schedule.name=self.cleaned_data['name']
-            schedule.description=self.cleaned_data['description']
-            schedule.picture=self.cleaned_data['picture']
-            schedule.hide_banner_text=self.cleaned_data['hide_banner_text']
-            schedule.external_url=self.cleaned_data['external_url']
-            schedule.external_publish_date=datetime.now()
-            schedule.order=self.cleaned_data['order']
-            schedule.status = self.cleaned_data['status']
+            schedule.date=self.cleaned_data['date']
+            schedule.time = self.cleaned_data['time']
             schedule.save()
         return schedule
