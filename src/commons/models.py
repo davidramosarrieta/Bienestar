@@ -29,7 +29,7 @@ from django.utils.translation import ugettext_lazy as _
 
 class Category(models.Model):
     name = models.CharField(('Nombre de la categoria'), max_length=255)
-    user = models.ManyToManyField(User, verbose_name=_('User'))
+    user = models.ManyToManyField(User, verbose_name=_('User'), blank=True, null=True)
 
     def __str__(self):
         return self.name
