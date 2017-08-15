@@ -10,5 +10,5 @@ def schedules_officers(request, template_name='dashboard/officers/schedules.html
         'yellow_trips': [],
         'red_trips': []
     }
-    a=1
+
     return render(request, template_name, data)
