@@ -25,24 +25,20 @@ class ScheduleForm(forms.Form):
                                      'placeholder': 'Hasta.','required':''
                                  }))
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, request, *args, **kwargs):
         super(ScheduleForm, self).__init__(*args, **kwargs)
+        self.user = request.user
 
-    def save(self, schedule=None, data=None):
-        start = self.cleaned_data['start_date']
-        end = self.cleaned_data['end_date']
+    def save(self):
+        start = self.cleaned_data['start_time']
+        end = self.cleaned_data['end_time']
         date = self.cleaned_data['date']
-        if not schedule:
-            while start <= end:
-                schedule = Schedule(
-                    user=data.user,
-                    date=date,
-                    time=start,
-                )
-                schedule.save()
-                start = start + timedelta(hours=1)
-        else:
-            schedule.date=self.cleaned_data['date']
-            schedule.time = self.cleaned_data['time']
+        while start <= end:
+            schedule = Schedule(
+                user=self.user,
+                date=date,
+                time=start,
+            )
             schedule.save()
-        return schedule
+            start = (datetime.combine(date.today(), start) + timedelta(hours=1)).time()
+

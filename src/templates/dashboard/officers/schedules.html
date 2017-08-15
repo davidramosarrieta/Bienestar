@@ -19,6 +19,8 @@
         font-size: 13px;
     }
 </style>
+
+
 <form method="POST" enctype="multipart/form-data">
     {% csrf_token %} <!-- validar todos los formularios-->
 
@@ -72,7 +74,6 @@
 </form>
 <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
 <script>
-
      $.datepicker.regional['es'] = {
      closeText: 'Cerrar',
      prevText: '< Ant',
@@ -94,7 +95,12 @@
 </script>
 <script>
 $(function () {
-    $("#id_date").datepicker();
+    $('#id_date').datepicker({
+        prevText: "&#9668;",
+        nextText: "&#9658;",
+        dateFormat: "yy-mm-dd",
+        showMonthAfterYear: true
+    });
 });
 $(document).ready(function() {
 

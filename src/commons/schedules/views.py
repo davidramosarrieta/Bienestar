@@ -18,13 +18,12 @@ def schedules_officers(request, template_name='dashboard/officers/schedules.html
     data['schedules']= Schedule.objects.filter(user=request.user)
 
     if request.POST:
-        form = ScheduleForm(data=request.POST or None)
+        form = ScheduleForm(request=request, data=request.POST)
         if form.is_valid():
             form.save()
-        10/0
         return HttpResponseRedirect(reverse('schedules_officers'))
     else:
-        form = ScheduleForm(initial={
+        form = ScheduleForm(request=request, initial={
             "date":None,
             "start_time":None,
             "end_time":None,
