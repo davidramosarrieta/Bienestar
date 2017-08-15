@@ -10,5 +10,7 @@ def summary_trips(request, template_name='dashboard/officers/summary.html'):
         'yellow_trips': [],
         'red_trips': []
     }
+    if request.user.rol == 'Estudiante':
+        template_name = 'dashboard/students/request.html'
 
     return render(request, template_name, data)
