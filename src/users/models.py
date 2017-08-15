@@ -8,10 +8,16 @@ from django.dispatch import receiver
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
 
+from src.commons.types import UserRol
+
+
 @python_2_unicode_compatible
 class User(AbstractUser):
 
     name = models.CharField(_('Nombre completo'), max_length=512)
+    rol = models.CharField(_('Rol'),max_length=255,
+    choices=UserRol.TYPES,
+    default=UserRol.OFFICER)
 
     def __str__(self):
         return self.username
