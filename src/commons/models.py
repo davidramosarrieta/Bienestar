@@ -33,6 +33,9 @@ class Schedule(models.Model):
     date = models.DateField(verbose_name=_('Dia'))
     time = models.TimeField(_('Hora de atencion'))
 
+    def __str__(self):
+        return str(self.date)
+
     class Meta:
         verbose_name = 'Horario'
 
@@ -42,8 +45,8 @@ class StudentRequest(models.Model):
     need = models.ForeignKey(Need, verbose_name=_('Necesidad'))
     schedule = models.ForeignKey(Schedule, verbose_name=_('Horario'))
     status = models.CharField(_('Estado de la peticion'),max_length=255,
-    choices=RequestStatus.TYPES,
-    default=RequestStatus.ASSIGNED)
+        choices=RequestStatus.TYPES,
+        default=RequestStatus.ASSIGNED)
 
     class Meta:
         verbose_name = 'Peticion'
