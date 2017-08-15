@@ -5,6 +5,15 @@
     <title>Title</title>
 </head>
 <body>
+<ul>
+{%for pr in studentRequest%}
+     <li>
+                {{ pr.User.pk }}
+                {{ pr.date }}
+                {{ pr.time }}
 
+         </li>
+        {%endfor%}
+</ul>
 </body>
 </html>
