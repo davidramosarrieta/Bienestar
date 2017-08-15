@@ -38,7 +38,7 @@ class Category(models.Model):
         verbose_name = 'Categoria'
 
 class Need(models.Model):
-    name = models.CharField(('Nombre de la categoria'), max_length=255)
+    name = models.CharField(('Nombre de la necesidad'), max_length=255)
     category = models.ForeignKey(Category,verbose_name=_('Category'))
 
     def __str__(self):

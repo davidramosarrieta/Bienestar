@@ -10,5 +10,5 @@ def summary_trips(request, template_name='dashboard/officers/summary.html'):
         'yellow_trips': [],
         'red_trips': []
     }
-    a=1
+
     return render(request, template_name, data)
