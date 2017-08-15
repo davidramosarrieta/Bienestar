@@ -57,7 +57,7 @@
                 <!-- start: LOGO -->
                 <!-- end: LOGO -->
             </div>
-            <div class="navbar-tools">
+            <div class="navbar-tools" style="margin-right: 15px;">
                 <!-- start: TOP NAVIGATION MENU -->
                 <ul class="nav navbar-right">
                     <!-- start: USER DROPDOWN -->
@@ -71,9 +71,9 @@
                 <!-- end: TOP NAVIGATION MENU -->
             </div>
 
-            <h2 style="font-size: 18px;color: #C7C7C7;font-weight: bold;float: left;display: block;height: auto;margin-top: -30px;font-family: fantasy;text-align: center;width: 100%;">
+            <h1 style="font-size: 18px;color: #C7C7C7;font-weight: bold;float: left;display: block;height: auto;margin-top: -30px;font-family: fantasy;text-align: center;width: 100%;">
               Bienestar Estudiantil
-            </h2>
+            </h1>
 
         </div>
         <!-- end: TOP NAVIGATION CONTAINER -->
@@ -87,37 +87,6 @@
 
             <!-- end: SPANEL CONFIGURATION MODAL FORM -->
             <div class="container">
-                <!-- start: PAGE HEADER -->
-                <div class="row">
-                    <div class="col-sm-12">
-                        <!-- start: PAGE TITLE & BREADCRUMB -->
-                        <ol class="breadcrumb">
-                            <li>
-                                <i class="clip-file"></i>
-                                <a href="/dashboard/">
-                                    Resumen de Viajes
-                                </a>
-                            </li>
-                            {% if breadcrumb %}
-                            <li>
-                                <i class="clip-file"></i>
-                                <a href="">
-                                    {{ breadcrumb.name }}
-                                </a>
-                            </li>
-                            {% endif %}
-                            <li class="active">
-                                {{primary_title}}
-                            </li>
-                        </ol>
-                        <div class="page-header">
-                            <h1>
-                              {% block primary_title %}{% endblock primary_title %}
-                              <small>{% block secondary_title %}{% endblock secondary_title %}</small>
-                            </h1>
-                        </div><!-- end: PAGE TITLE & BREADCRUMB -->
-                    </div>
-                </div>
                 <!-- end: PAGE HEADER -->
                 {% if success_message %}
                   <div class="alert alert-success">
