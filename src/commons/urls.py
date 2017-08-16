@@ -34,4 +34,5 @@ urlpatterns = [
         view=officer_schedule,
         name='officer_schedule'
     ),
+
 ]
