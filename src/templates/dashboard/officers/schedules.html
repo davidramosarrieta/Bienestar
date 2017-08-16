@@ -19,58 +19,63 @@
         font-size: 13px;
     }
 </style>
+<div class="col-lg-12">
+    <a class="btn btn-primary" href="{% url 'schedules_officers' %}">Horas disponibles</a>
+    <a class="btn btn-primary" href="{% url 'schedules_officers' %}">Peticiones pendientes</a>
+</div>
+<div class="col-lg-12">
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %} <!-- validar todos los formularios-->
 
-<form method="POST" enctype="multipart/form-data">
-    {% csrf_token %} <!-- validar todos los formularios-->
+        <div class="form-group">
+            <div class="field-error">{{ form.date.errors }}</div>
+            <div class="field-error">{{ form.start_time.errors }}</div>
+            <label class="col-lg-2 control-label">Fecha y horas</label>
+            <div class="col-lg-10">
 
-    <div class="form-group">
-        <div class="field-error">{{ form.date.errors }}</div>
-        <div class="field-error">{{ form.start_time.errors }}</div>
-        <label class="col-lg-2 control-label">Fecha y horas</label>
-        <div class="col-lg-10">
+                 <label for="{{ form.date.id_for_label }}" class="col-lg-1 control-label">Día*</label>
+                 <div class="col-md-3 ph4 mb12" style="padding: 0px;">
+                     <label for="id_date" class="field">
+                         {{ form.date }}
+                         <b class="tooltip tip-right-top">
+                           <em>
+                             Día.
+                           </em>
+                         </b>
+                     </label>
+                 </div>
+                 <!-- /section -->
+                 <label for="{{ form.start_time.id_for_label }}" class="col-lg-1 control-label">Desde*</label>
+                 <div class="col-md-2 ph4 mb12">
+                     <label for="id_start_time" class="field">
+                         {{ form.start_time }}
+                         <b class="tooltip tip-right-top">
+                           <em>
+                             Hora de inicio.
+                           </em>
+                         </b>
+                     </label>
+                 </div>
+                 <!-- /section -->
+                <label for="{{ form.end_time.id_for_label }}" class="col-lg-1 control-label">Hasta*</label>
+                <div class="col-md-2 ph4 mb12">
+                     <label for="id_end_time" class="field">
+                         {{ form.end_time }}
+                         <b class="tooltip tip-right-top">
+                           <em>
+                             Hora de finalización.
+                           </em>
+                         </b>
+                     </label>
+                 </div>
+                 <!-- /section -->
 
-             <label for="{{ form.date.id_for_label }}" class="col-lg-1 control-label">Día*</label>
-             <div class="col-md-3 ph4 mb12" style="padding: 0px;">
-                 <label for="id_date" class="field">
-                     {{ form.date }}
-                     <b class="tooltip tip-right-top">
-                       <em>
-                         Día.
-                       </em>
-                     </b>
-                 </label>
-             </div>
-             <!-- /section -->
-             <label for="{{ form.start_time.id_for_label }}" class="col-lg-1 control-label">Desde*</label>
-             <div class="col-md-2 ph4 mb12">
-                 <label for="id_start_time" class="field">
-                     {{ form.start_time }}
-                     <b class="tooltip tip-right-top">
-                       <em>
-                         Hora de inicio.
-                       </em>
-                     </b>
-                 </label>
-             </div>
-             <!-- /section -->
-            <label for="{{ form.end_time.id_for_label }}" class="col-lg-1 control-label">Hasta*</label>
-            <div class="col-md-2 ph4 mb12">
-                 <label for="id_end_time" class="field">
-                     {{ form.end_time }}
-                     <b class="tooltip tip-right-top">
-                       <em>
-                         Hora de finalización.
-                       </em>
-                     </b>
-                 </label>
-             </div>
-             <!-- /section -->
-
-            <button type="submit"> guardar </button>
+                <button type="submit"> guardar </button>
+            </div>
         </div>
-    </div>
+    </form>
+</div>
 
-</form>
 <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
 <script>
      $.datepicker.regional['es'] = {
