@@ -6,11 +6,12 @@
 </head>
 <body>
 <ul>
-{%for pr in studentRequest%}
+{%for student_request in student_requests%}
      <li>
-                {{ pr.User.pk }}
-                {{ pr.date }}
-                {{ pr.time }}
+                {{ student_request.user.pk }}
+                {{ student_request.status }}
+                {{ student_request.description }}
+                {{ student_request.schedule.user }}
 
          </li>
         {%endfor%}

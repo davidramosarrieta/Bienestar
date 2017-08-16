@@ -9,13 +9,11 @@ from src.users.models import User
 @login_required
 def officer_schedule(request, template_name='dashboard/officers/request.html'):
 
-    studentRequest = StudentRequest.objects.filter('id')
 
-    schedule = Schedule.objects.filter(user=request.user.name)
-
+    student_requests = StudentRequest.objects.filter(schedule__user=request.user)
 
     context = {
-        'studentRequest': studentRequest
+        'student_requests': student_requests
     }
     #return render(template
 
