@@ -15,7 +15,7 @@ from src.commons.schedules.forms import ScheduleForm
 def schedules_officers(request, template_name='dashboard/officers/schedules.html'):
     data = {}
     data['time'] = datetime.now()
-    data['schedules']= Schedule.objects.filter(user=request.user)
+    data['schedules']= Schedule.objects.filter(user=request.user, date__gte=data['time']).order_by('date','time')
 
     if request.POST:
         form = ScheduleForm(request=request, data=request.POST)
@@ -30,4 +30,5 @@ def schedules_officers(request, template_name='dashboard/officers/schedules.html
         })
 
     data['form'] = form
+
     return render(request, template_name, data)
