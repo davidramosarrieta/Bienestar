@@ -1,11 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <a href="{% url 'schedules_officers' %}">shedules_officers</a>
-    <a href="{% url 'schedules_officers' %}"></a>
-</body>
-</html>
+{% extends "dashboard/base.html" %}
+{% load crispy_forms_tags %}
+{% load staticfiles i18n compress %}
+
+{% block main %}
+    <div class="col-lg-12">
+        <a class="btn btn-primary" href="{% url 'schedules_officers' %}">Horas disponibles</a>
+        <a class="btn btn-primary" href="{% url 'schedules_officers' %}">Peticiones pendientes</a>
+    </div>
+{% endblock %}
