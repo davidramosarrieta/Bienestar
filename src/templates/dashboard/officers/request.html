@@ -1,20 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "dashboard/base.html" %}
+{% load static %}{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block title %} {{primary_title}} {% endblock %}
+{% block primary_title %} {{primary_title}} {% endblock %}
+{% block secondary_title %} {{secondary_title}} {% endblock %}
+
+{% block main %}
+
+
 <ul>
 {%for student_request in student_requests%}
-     <li>
-                {{ student_request.user.pk }}
-                {{ student_request.status }}
-                {{ student_request.description }}
-                {{ student_request.schedule.user }}
+
+     <li  style="background-color: #7ecff4; color: #FFFFFF; ">
+         <label for="">estado: {{ student_request.status }}</label>
+         <label for="">descripcion: {{ student_request.description }}</label>
+         <label for=""> estudiante: {{ student_request.student }}</label>
+
 
          </li>
         {%endfor%}
+
 </ul>
-</body>
-</html>
+
+{% endblock %}
